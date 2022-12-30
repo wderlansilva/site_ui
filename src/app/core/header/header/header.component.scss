@@ -1,0 +1,33 @@
+@import "/src/app/shared/scss/_variables.scss";
+
+@mixin flexContent($justify-content) {
+  display: flex;
+  justify-content: $justify-content;
+  align-items: center;
+}
+
+mat-toolbar {
+  @include flexContent(space-evenly);
+  background-color: $primary-color;
+  height: 6rem;
+  position: fixed;
+
+
+  div {
+    @include flexContent(center);
+    .mat-button {
+      font-size: 1rem;
+      position: relative;
+      height: 5rem;
+      color: $font-white;
+      cursor: pointer;
+    }
+
+    .server_status {
+      position: relative;
+      right: 5rem;
+      cursor: pointer;
+    }
+  }
+}
+
