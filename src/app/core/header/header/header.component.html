@@ -1,0 +1,47 @@
+<mat-toolbar>
+  <div>
+    <mat-icon class="server_status">donut_large</mat-icon>
+
+    <button mat-button routerLink="/">Home</button>
+    <button mat-button (click)="on()" routerLink="/create-account">Play Now</button>
+
+    <button mat-button [matMenuTriggerFor]="ServerInfo">Server Info</button>
+    <mat-menu class="drop-button" #ServerInfo="matMenu" yPosition="below">
+      <button mat-menu-item>Gameplay</button>
+      <button mat-menu-item>Events</button>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="statistics">Statistics</button>
+    <mat-menu #statistics="matMenu" yPosition="below">
+      <button mat-menu-item>RaidBoss</button>
+      <button mat-menu-item>Territory</button>
+      <button mat-menu-item>Ranking</button>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="media">Media</button>
+    <mat-menu #media="matMenu" yPosition="below">
+      <button mat-menu-item>ScreenShots</button>
+      <button mat-menu-item>Videos</button>
+    </mat-menu>
+
+    <button mat-button>Forum</button>
+  </div>
+
+  <div>
+    <button mat-button [matMenuTriggerFor]="person">
+      <mat-icon>person</mat-icon>
+    </button>
+    <mat-menu #person="matMenu" yPosition="below">
+      <button mat-menu-item>Item 1</button>
+      <button mat-menu-item>Item 2</button>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="lang">
+      <mat-icon>flag</mat-icon>
+    </button>
+    <mat-menu #lang="matMenu" yPosition="below">
+      <button mat-menu-item>Item 1</button>
+      <button mat-menu-item>Item 2</button>
+    </mat-menu>
+  </div>
+</mat-toolbar>
