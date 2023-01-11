@@ -15,6 +15,7 @@ mat-toolbar {
 
   div {
     @include flexContent(center);
+
     .mat-button {
       font-size: 1rem;
       position: relative;
@@ -27,6 +28,11 @@ mat-toolbar {
       position: relative;
       right: 5rem;
       cursor: pointer;
+    }
+
+    mat-menu-item {
+      height: 5rem;
+      width: 5rem;
     }
   }
 }

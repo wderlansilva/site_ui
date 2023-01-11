@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {MatDialog} from "@angular/material/dialog";
+import {DialogLogin} from "../../login/presentation/page/dialog-login.component";
 
 @Component({
   selector: 'app-header',
@@ -6,14 +8,21 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor() { }
+  constructor(
+    public dialog: MatDialog
+  ) {
+  }
 
   ngOnInit(): void {
   }
 
-  on() {
-    console.log('entrei')
-  }
+  openDialog(): void {
 
+    // Todo: Responsividade modal
+    this.dialog.open(DialogLogin, {
+      width: '250px',
+      height: '20rem'
+    });
+  }
 }
+
