@@ -10,8 +10,6 @@ mat-toolbar {
   @include flexContent(space-evenly);
   background-color: $primary-color;
   height: 6rem;
-  position: fixed;
-
 
   div {
     @include flexContent(center);
@@ -34,6 +32,10 @@ mat-toolbar {
       height: 5rem;
       width: 5rem;
     }
+  }
+
+  mat-icon {
+    cursor: pointer;
   }
 }
 

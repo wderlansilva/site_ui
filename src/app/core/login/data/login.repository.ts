@@ -8,7 +8,7 @@ import * as moment from "moment";
 export class LoginRepository {
 
   // Todo: Criar gets para urls da API
-  private readonly API = '/api/users/check-login';
+  private readonly API = '/api/v1/auth/authenticate';
 
   constructor(
     private httpClient: HttpClient
