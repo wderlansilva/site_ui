@@ -41,10 +41,10 @@ export class CreateAccountComponent implements OnInit, OnDestroy {
 
   getErrorMessage() {
     if (this.form.get('email')?.hasError('required')) {
-      return 'You must enter a value';
+      return 'Você precisa digitar algum valor meu jovem.';
     }
 
-    return this.form.get('email')?.hasError('email') ? 'Not a valid email' : '';
+    return this.form.get('email')?.hasError('email') ? 'Esse email não é valido, pequeno padawan ;( ' : '';
   }
 
   onSubmit() {
@@ -60,7 +60,9 @@ export class CreateAccountComponent implements OnInit, OnDestroy {
         }, 2000)
       },
       error: (err) => {
-        this.report.onError(`Ocorreu um erro de status: ${err.status} estamos acordando o programador da Nasa  ;(`);
+        this.report.onError(
+          `Ocorreu um erro de status: [${err.status}] 
+          estamos acordando o mestre Yoda ;(`);
         console.error(err)
       }
     });

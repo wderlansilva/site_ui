@@ -1,41 +1,89 @@
 <div class="container" *ngIf="!loading; else spinner">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Crie sua conta</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <form [formGroup]="form">
-        <mat-form-field>
-          <input matInput placeholder="Nome" formControlName="nm_user" required>
-        </mat-form-field>
+  <div class="content">
+    <div class="image-container">
+      <div class="image">
+        <img src="/assets/logo-lineage.png" alt="logo-lineage" />
+      </div>
+    </div>
 
-        <mat-form-field>
-          <mat-label>Informe seu email</mat-label>
-          <input matInput placeholder="name@example.com" formControlName="email" required>
-          <mat-error *ngIf="form.get('email')?.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
+    <div class="card-container">
+      <mat-card>
+        <div class="content-card">
+          <div class="card-header">
+            <h2>
+              Crie sua conta,
+            </h2>
+            <p>pequeno padawan 🖖</p>
+          </div>
+          <mat-card-content>
+            <form [formGroup]="form">
+              <mat-form-field color="accent">
+                <input
+                  matInput
+                  placeholder="Nome"
+                  formControlName="nm_user"
+                  required
+                  
+                />
+              </mat-form-field>
 
-        <mat-form-field>
-          <input matInput placeholder="Crie uma senha" [type]="hide ? 'password' : 'text'" formControlName="password"
-                 required>
-          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                  [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </button>
-        </mat-form-field>
-      </form>
-    </mat-card-content>
-    <mat-card-actions>
-      <button color="primary" mat-raised-button [disabled]="form.invalid" (click)="onSubmit()">Criar conta</button>
-      <button mat-raised-button (click)="onCancel()">Cancelar</button>
-    </mat-card-actions>
-  </mat-card>
+              <mat-form-field color="accent">
+                <mat-label>Informe seu email</mat-label>
+                <input
+                  matInput
+                  placeholder="name@exemplo.com"
+                  formControlName="email"
+                  required
+                />
+                <mat-error *ngIf="form.get('email')?.invalid">{{
+                  getErrorMessage()
+                }}</mat-error>
+              </mat-form-field>
+
+              <mat-form-field color="accent">
+                <input
+                  matInput
+                  placeholder="Crie uma senha"
+                  [type]="hide ? 'password' : 'text'"
+                  formControlName="password"
+                  required
+                />
+                <button
+                  mat-icon-button
+                  matSuffix
+                  (click)="hide = !hide"
+                  [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hide"
+                >
+                  <mat-icon>{{
+                    hide ? "visibility_off" : "visibility"
+                  }}</mat-icon>
+                </button>
+              </mat-form-field>
+            </form>
+          </mat-card-content>
+          <mat-card-actions>
+            <button
+              color="accent"
+              mat-raised-button
+              [disabled]="form.invalid"
+              (click)="onSubmit()"
+            >
+              Criar conta
+            </button>
+            <button 
+              mat-button
+              (click)="onCancel()"
+              >Cancelar
+              </button>
+          </mat-card-actions>
+        </div>
+      </mat-card>
+    </div>
+  </div>
 </div>
-
 <ng-template #spinner>
   <div class="spinner">
     <mat-spinner></mat-spinner>
   </div>
-
 </ng-template>
-

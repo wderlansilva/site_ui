@@ -1,4 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+@import "/src/app/shared/scss/_variables.scss";
 
 html, body { height: 100%; }
 body {
@@ -8,10 +8,22 @@ body {
   padding: 0;
 }
 
+@import '@angular/material/theming';
 
-/* Alterar cor do Mat-menu, também pode ser no scss local, com ::ng-deep + class name
+@include mat-core();
 
-.mat-menu-panel.drop-button {
-  background-color: red;
+$my-primary: mat-palette($mat-gray, 900);
+$my-secondary: mat-palette($mat-blue-gray);
+$my-warn: mat-palette($mat-red);
+
+$my-theme: mat-dark-theme($my-primary, $my-secondary, $my-warn);
+
+@include angular-material-theme($my-theme);
+
+
+.snack-report {
+  background-color: $primary-color;
+  bottom: 5rem !important;
+  color: white;
 }
- */
+
