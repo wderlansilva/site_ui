@@ -14,7 +14,7 @@ export class ReportSnack {
     this.snackBar.open(msg, '', {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
-      duration: 5000
+      duration: 6000
     });
   }
 
@@ -22,7 +22,8 @@ export class ReportSnack {
     this.snackBar.open(error, '', {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
-      duration: 5000
+      duration: 20000,
+      panelClass: 'snack-report',
     });
   }
 }

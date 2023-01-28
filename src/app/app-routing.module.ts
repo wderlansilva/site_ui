@@ -8,6 +8,10 @@ const routes: Routes = [
   {
     path: 'create-account',
     loadChildren: () => import('./pages/create-account/create-account.module' ).then(m => m.CreateAccountModule)
+  },
+  {
+    path: 'account-panel',
+    loadChildren: () => import('./core/account-panel/account-panel.module' ).then(m => m.AccountPanelModule)
   }
 ];
 

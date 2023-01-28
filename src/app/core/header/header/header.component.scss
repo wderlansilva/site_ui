@@ -7,33 +7,53 @@
 }
 
 mat-toolbar {
-  @include flexContent(space-evenly);
-  background-color: $primary-color;
-  height: 6rem;
-  position: fixed;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  .content {
+    width: 100%;
+    max-width: $max-width-container;
+    display: flex;
+    align-items: center;
 
-  div {
-    @include flexContent(center);
-
-    .mat-button {
-      font-size: 1rem;
-      position: relative;
-      height: 5rem;
-      color: $font-white;
-      cursor: pointer;
+    
+    .options-in-menu {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      
+      .menus {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .mat-button {
+        font-size: 1rem;
+        color: $font-white;
+        cursor: pointer;
+      }
+      
+      .server_status {
+        margin-left: 1.5rem;
+      }
+    }
+    
+    .icons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    
+      margin-right: 1.5rem;
     }
 
-    .server_status {
-      position: relative;
-      right: 5rem;
+    mat-icon {
       cursor: pointer;
-    }
-
-    mat-menu-item {
-      height: 5rem;
-      width: 5rem;
     }
   }
 }
-

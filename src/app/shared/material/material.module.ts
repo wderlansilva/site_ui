@@ -10,6 +10,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 
 @NgModule({
@@ -24,7 +26,11 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatSnackBarModule,
     MatExpansionModule,
     MatDialogModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSidenavModule,
+    MatCheckboxModule
+
+
 ]
 })
 export class MaterialModule {

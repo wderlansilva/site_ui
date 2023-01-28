@@ -1,42 +1,51 @@
-<mat-toolbar>
-  <div>
-    <mat-icon class="server_status">donut_large</mat-icon>
+<mat-toolbar *ngIf="visible" color="primary">
+  <div class="content">
+    <div class="options-in-menu">
+      <mat-icon class="server_status">donut_large</mat-icon>
 
-    <button mat-button routerLink="/">Home</button>
-    <button mat-button routerLink="/create-account">Play Now</button>
+      <div class="menus">
+        <button mat-button routerLink="/">Home</button>
+        <button mat-button routerLink="/create-account">Play Now</button>
 
-    <button mat-button [matMenuTriggerFor]="ServerInfo">Server Info</button>
-    <mat-menu class="drop-button" #ServerInfo="matMenu" yPosition="below">
-      <button mat-menu-item>Gameplay</button>
-      <button mat-menu-item>Events</button>
-    </mat-menu>
+        <button mat-button [matMenuTriggerFor]="ServerInfo">Server Info</button>
+        <mat-menu class="drop-button" #ServerInfo="matMenu" yPosition="below">
+          <button mat-menu-item>Gameplay</button>
+          <button mat-menu-item>Events</button>
+        </mat-menu>
 
-    <button mat-button [matMenuTriggerFor]="statistics">Statistics</button>
-    <mat-menu #statistics="matMenu" yPosition="below">
-      <button mat-menu-item>RaidBoss</button>
-      <button mat-menu-item>Territory</button>
-      <button mat-menu-item>Ranking</button>
-    </mat-menu>
+        <button mat-button [matMenuTriggerFor]="statistics">Statistics</button>
+        <mat-menu #statistics="matMenu" yPosition="below">
+          <button mat-menu-item>RaidBoss</button>
+          <button mat-menu-item>Territory</button>
+          <button mat-menu-item>Ranking</button>
+        </mat-menu>
 
-    <button mat-button [matMenuTriggerFor]="media">Media</button>
-    <mat-menu #media="matMenu" yPosition="below">
-      <button mat-menu-item>ScreenShots</button>
-      <button mat-menu-item>Videos</button>
-    </mat-menu>
+        <button mat-button [matMenuTriggerFor]="media">Media</button>
+        <mat-menu #media="matMenu" yPosition="below">
+          <button mat-menu-item>ScreenShots</button>
+          <button mat-menu-item>Videos</button>
+        </mat-menu>
 
-    <button mat-button>Forum</button>
-  </div>
+        <button mat-button>Forum</button>
+      </div>
 
-  <div>
-
-    <mat-icon (click)="openDialog()">person</mat-icon>
-
-    <button mat-button [matMenuTriggerFor]="lang">
-      <mat-icon>flag</mat-icon>
-    </button>
-    <mat-menu #lang="matMenu" yPosition="below">
-      <button mat-menu-item>Item 1</button>
-      <button mat-menu-item>Item 2</button>
-    </mat-menu>
+      <div class="icons">
+        <button mat-button>
+          <mat-icon *ngIf="!userAuthenticate" (click)="openDialog()"
+            >person
+          </mat-icon>
+          <mat-icon *ngIf="userAuthenticate" (click)="openProfile()"
+            >kitchen
+          </mat-icon>
+        </button>
+        <button mat-button [matMenuTriggerFor]="lang">
+          <mat-icon>flag</mat-icon>
+        </button>
+        <mat-menu #lang="matMenu" yPosition="below">
+          <button mat-menu-item>Item 1</button>
+          <button mat-menu-item>Item 2</button>
+        </mat-menu>
+      </div>
+    </div>
   </div>
 </mat-toolbar>
