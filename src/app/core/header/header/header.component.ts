@@ -18,6 +18,9 @@ import {
 export class HeaderComponent implements OnInit {
 
   visible: boolean = true;
+
+  value: string = '';
+
   userAuthenticate: boolean = true;
 
   constructor(
@@ -41,9 +44,14 @@ export class HeaderComponent implements OnInit {
       next: event => {
         if (event instanceof NavigationEnd) {
           if (event.url === '/home') {
-            this.visible = true;
+            this.value = event.url;
             console.log(event)
-          }
+          } 
+          if (event.url === '/create-account') {
+            this.value = event.url;
+            console.log(event)
+          } 
+          console.log(this.value)
         }
       }
     })

@@ -11,8 +11,10 @@ mat-toolbar {
   height: 100%;
   width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: end;
+  justify-content: start;
+  background-color: transparent !important;
+  border-bottom: 1px solid rgba(221, 210, 210, 0.767);
 
   .content {
     width: 100%;
@@ -20,35 +22,45 @@ mat-toolbar {
     display: flex;
     align-items: center;
 
-    
     .options-in-menu {
       display: flex;
       align-items: center;
       justify-content: space-between;
       width: 100%;
-      
+
       .menus {
         display: flex;
         align-items: center;
         justify-content: center;
       }
-      
-      .mat-button {
-        font-size: 1rem;
-        color: $font-white;
+      .buttons {
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        font-weight: 400;
         cursor: pointer;
+        color: rgb(224, 225, 240);
+        height: 2rem;
+        margin-top: 2px;
+        margin-right: 1rem;
+
+        &:hover {
+          // color: white;
+          filter: brightness(2);
+        }
       }
-      
+
       .server_status {
         margin-left: 1.5rem;
       }
     }
-    
+
     .icons {
       display: flex;
       align-items: center;
       justify-content: center;
-    
+
       margin-right: 1.5rem;
     }
 
@@ -56,4 +68,11 @@ mat-toolbar {
       cursor: pointer;
     }
   }
+}
+
+.select-bold {
+  // font-weight: 700 !important;
+  color: rgb(255, 255, 255) !important;
+  // height: 100%;
+  border-bottom: 1px solid beige !important;
 }

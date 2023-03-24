@@ -1,41 +1,37 @@
 <mat-toolbar *ngIf="visible" color="primary">
   <div class="content">
     <div class="options-in-menu">
-      <mat-icon class="server_status">donut_large</mat-icon>
 
       <div class="menus">
-        <button mat-button routerLink="/">Home</button>
-        <button mat-button routerLink="/create-account">Play Now</button>
+        <button [ngClass]="{'buttons': true, 'select-bold': value === '/home' ? true : false }" class="buttons" routerLink="/home">Home</button>
+        <button [ngClass]="{'buttons': true, 'select-bold': value === '/create-account' ? true : false }" routerLink="/create-account">Play Now</button>
 
-        <button mat-button [matMenuTriggerFor]="ServerInfo">Server Info</button>
+        <button [ngClass]="{'buttons': true, 'select-bold': false}" [matMenuTriggerFor]="ServerInfo">Server Info</button>
         <mat-menu class="drop-button" #ServerInfo="matMenu" yPosition="below">
           <button mat-menu-item>Gameplay</button>
           <button mat-menu-item>Events</button>
         </mat-menu>
 
-        <button mat-button [matMenuTriggerFor]="statistics">Statistics</button>
+        <button [ngClass]="{'buttons': true, 'select-bold': false}" [matMenuTriggerFor]="statistics">Statistics</button>
         <mat-menu #statistics="matMenu" yPosition="below">
           <button mat-menu-item>RaidBoss</button>
           <button mat-menu-item>Territory</button>
           <button mat-menu-item>Ranking</button>
         </mat-menu>
 
-        <button mat-button [matMenuTriggerFor]="media">Media</button>
+        <button [ngClass]="{'buttons': true, 'select-bold': false}" [matMenuTriggerFor]="media">Media</button>
         <mat-menu #media="matMenu" yPosition="below">
           <button mat-menu-item>ScreenShots</button>
           <button mat-menu-item>Videos</button>
         </mat-menu>
 
-        <button mat-button>Forum</button>
-      </div>
+        <button [ngClass]="{'buttons': true, 'select-bold': false}">Forum</button>
 
-      <div class="icons">
+        <!-- <div class="icons"> -->
         <button mat-button>
-          <mat-icon *ngIf="!userAuthenticate" (click)="openDialog()"
-            >person
+          <mat-icon *ngIf="!userAuthenticate" (click)="openDialog()">person
           </mat-icon>
-          <mat-icon *ngIf="userAuthenticate" (click)="openProfile()"
-            >kitchen
+          <mat-icon *ngIf="userAuthenticate" (click)="openProfile()">kitchen
           </mat-icon>
         </button>
         <button mat-button [matMenuTriggerFor]="lang">
@@ -46,6 +42,11 @@
           <button mat-menu-item>Item 2</button>
         </mat-menu>
       </div>
+      <!-- </div> -->
+
+      <!-- TUDO: Tranferir status do servidor para seção em cima do right-features -->
+      <!-- <mat-icon class="server_status">donut_large</mat-icon> -->
+
     </div>
   </div>
 </mat-toolbar>

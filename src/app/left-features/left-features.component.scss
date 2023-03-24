@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 100%;
+        
+        .card {
+            max-width: 50px;
+            max-height: 50px;
+            img {
+                width: 100%;
+            }
+        }
+    }
+}
