@@ -4,7 +4,7 @@
       <mat-icon class="server_status">donut_large</mat-icon>
 
       <div class="menus">
-        <button mat-button routerLink="/">Home</button>
+        <button mat-button routerLink="/home">Home</button>
         <button mat-button routerLink="/create-account">Play Now</button>
 
         <button mat-button [matMenuTriggerFor]="ServerInfo">Server Info</button>
@@ -36,6 +36,11 @@
           </mat-icon>
           <mat-icon *ngIf="userAuthenticate" (click)="openProfile()"
             >kitchen
+          </mat-icon>
+        </button>
+        <button mat-button *ngIf="userAuthenticate">
+          <mat-icon  (click)="logout()"
+          >exit_to_app
           </mat-icon>
         </button>
         <button mat-button [matMenuTriggerFor]="lang">

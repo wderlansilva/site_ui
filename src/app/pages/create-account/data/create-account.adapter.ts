@@ -11,7 +11,6 @@ export class CreateAccountAdapter implements CreateAccountGateway {
     private repository: CreateAccountRepository
     ) {}
 
-
   saveUser(user: User): Observable<User> {
     return this.repository.saveUser(user);
   }

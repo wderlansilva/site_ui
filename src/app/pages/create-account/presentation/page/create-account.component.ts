@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {Router} from "@angular/router";
-import {Subject, takeUntil} from "rxjs";
+import {BehaviorSubject, Subject, takeUntil} from "rxjs";
 import {ReportSnack} from "../../../../shared/report/report.snack";
 import {AuthService} from "../../../../shared/authService/auth.service";
 
@@ -15,9 +15,8 @@ export class CreateAccountComponent implements OnInit, OnDestroy {
   loading: boolean = false;
   hide = true;
   form: FormGroup;
-  delayTime: any;
 
-  private destroy$ = new Subject<void>();
+  private _ngUnsubscribe$: Subject<boolean> = new Subject;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -34,9 +33,6 @@ export class CreateAccountComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    AuthService.userAuthenticate.subscribe(
-      authSucess => this.loading = authSucess
-    );
   }
 
   getErrorMessage() {
@@ -48,24 +44,7 @@ export class CreateAccountComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this.authService.createAccount(this.form.value).pipe(
-      takeUntil(this.destroy$)
-    ).subscribe({
-      next: () => {
-        this.loading = true;
-        this.report.onSucess('Usuário criado com sucesso!');
-        this.delayTime = setInterval(() => {
-          AuthService.userAuthenticate.emit(true);
-          this.route.navigate(['/home']);
-        }, 2000)
-      },
-      error: (err) => {
-        this.report.onError(
-          `Ocorreu um erro de status: [${err.status}] 
-          estamos acordando o mestre Yoda ;(`);
-        console.error(err)
-      }
-    });
+    this.authService.createAccount(this.form.value);
   }
 
   onCancel() {
@@ -73,9 +52,8 @@ export class CreateAccountComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
-    clearInterval(this.delayTime);
+    this._ngUnsubscribe$.next(true) ;
+    this._ngUnsubscribe$.complete();
   }
 
 }

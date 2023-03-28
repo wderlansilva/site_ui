@@ -12,7 +12,6 @@ export class CreateAccountRepository {
 
   private readonly API = '/api/v1/auth/register';
 
-
   saveUser(user: User): Observable<User> {
     return this.httpClient.post<User>(this.API, user)
   }

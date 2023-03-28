@@ -1,47 +1,77 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {UserModel} from "./userLoginModel/user.model";
-import {Observable, shareReplay, tap} from "rxjs";
-import * as moment from "moment";
+import {User} from "./model/user.model";
+import {AuthenticationReponse} from "./model/authenticationReponse.model";
+import {ReportSnack} from "../report/report.snack";
+import {Router} from "@angular/router";
 
 @Injectable()
 export class AuthService {
+  public currentUser: User = new User();
+  static isAuthenticate = new EventEmitter<boolean>();
 
-  static userAuthenticate = new EventEmitter<boolean>();
-
-  private readonly API = 'api/v1/auth';
+  private readonly API = 'api/v1/';
 
   constructor(
-    private http: HttpClient,
-  ) {
+    private _http: HttpClient,
+    private _report: ReportSnack,
+    private _router: Router
+  ) {}
+
+  // login({...params}: UserModel)
+  // {
+  //   this._http.post<UserModel>(`${this.API}/authenticate`, params);
+  // }
+
+  createAccount(user: User): void {
+    this.logout();
+
+    let URL = `${this.API}auth/register`;
+    this._http.post<AuthenticationReponse>(URL, user)
+      .subscribe({
+        next: res => {
+          this.authSucess(res.token, res.cd_user);
+          this._report.onSucess('Usuário criado com sucesso!');
+          AuthService.isAuthenticate.emit(true);
+          this._router.navigate(['/account-panel']);
+        },
+        error: err => {
+          this._report.onError(`Ocorreu um erro de status: [${err.status}]
+          estamos acordando o programador da NASA ;(`);
+        }
+      })
+  };
+
+  private authSucess(token: string, id: string): void {
+    localStorage.setItem('id_token', token);
+    this.getUserProfile(id);
   }
 
-  login({...params}: UserModel) {
-    this.http.post<UserModel>(`${this.API}/authenticate`, params);
+  private getUserProfile(id: string): void {
+    let URL = `${this.API}users/${id}`
+    this._http.get<User>(URL).pipe(
+    ).subscribe({
+      next: user => {
+        this.currentUser = user;
+      },
+      error: err => console.log(err)
+    });
   }
 
-  createAccount(userModel: UserModel): Observable<UserModel> {
-    return this.http.post<UserModel>(`${this.API}/register`, userModel).pipe(
-      tap( token => this.setSession(token)),
-      shareReplay(1)
-    )};
-
-  private setSession(token: any) {
-    const expireAt = moment().add(token.expiresIn,'second');
-    console.log(token)
-
-    localStorage.setItem('id_token', token.token);
-    localStorage.setItem('expires_at', JSON.stringify(expireAt.valueOf()) );
+  getToken(): string {
+    let token = localStorage.getItem('id_token');
+    if (token) {
+      return token;
+    }
+    return '';
   }
 
-  isLogedIn() {
-    return moment().isBefore(this.getExpiration());
-  }
-
-  getExpiration() {
-    const expiration = localStorage.getItem('expires_at');
-    const expiresAt = JSON.parse(expiration ? expiration : '');
-
-    return moment(expiresAt);
+  logout(): void {
+    const token = localStorage.getItem('id_token');
+    if (token) {
+      localStorage.removeItem('id_token');
+      AuthService.isAuthenticate.emit(false);
+      this._router.navigate(['/home']);
+    }
   }
 }
