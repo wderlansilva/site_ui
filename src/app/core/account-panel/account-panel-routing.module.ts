@@ -6,7 +6,7 @@ import {ProfileComponent} from "./components/profile/profile.component";
 const routes: Routes = [
   {path: '', component: AccountPanelComponent,
     children : [
-      {path: 'account-panel/profile', component: ProfileComponent}
+      {path: 'profile', component: ProfileComponent}
     ]
   }
 ];

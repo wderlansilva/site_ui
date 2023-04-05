@@ -15,7 +15,7 @@ import {
 export class HeaderComponent implements OnInit {
 
   visible: boolean = true;
-  userAuthenticate: boolean = true;
+  userAuthenticate: boolean = false;
 
   constructor(
     public dialog: MatDialog,
@@ -24,22 +24,19 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    AuthService.isAuthenticate.subscribe(
-      {
-        next: (isAuthenticate: boolean) => {
-          this.userAuthenticate = isAuthenticate;
-        }
-      }
-    )
+
+    this._authService
+      .isAuthenticate()
+      .subscribe((value) => (this.userAuthenticate = value));
 
     this.route.events.subscribe({
-      next: event => {
+      next: (event) => {
         if (event instanceof NavigationStart) {
           console.log(event);
           this.visible = !event.url.includes('/account-panel');
         }
-      }
-    })
+      },
+    });
   }
 
   openDialog(): void {

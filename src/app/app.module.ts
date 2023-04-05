@@ -12,6 +12,7 @@ import { AuthService } from "./shared/authService/auth.service";
 import { MaterialModule } from './shared/material/material.module';
 import { ReportSnack } from "./shared/report/report.snack";
 import {AuthInterceptor} from "./shared/interceptors/auth.interceptor";
+import { JwtModule} from "@auth0/angular-jwt";
 
 
 @NgModule({
@@ -24,7 +25,14 @@ import {AuthInterceptor} from "./shared/interceptors/auth.interceptor";
     MaterialModule,
     HttpClientModule,
     AccountPanelModule,
-    FooterModule
+    FooterModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => localStorage.getItem('id_token'),
+        // allowedDomains: ['example.com'],
+        // disallowedRoutes: ['example.com/auth/login'],
+      },
+    }),
   ],
   providers: [
     AuthService,
@@ -33,7 +41,7 @@ import {AuthInterceptor} from "./shared/interceptors/auth.interceptor";
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }
+    },
   ],
   bootstrap: [AppComponent]
 })

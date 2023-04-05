@@ -13,7 +13,7 @@ body {
 @include mat-core();
 
 $my-primary: mat-palette($mat-gray, 900);
-$my-secondary: mat-palette($mat-blue-gray);
+$my-secondary: mat-palette($mat-gray, 800);
 $my-warn: mat-palette($mat-red);
 
 $my-theme: mat-dark-theme($my-primary, $my-secondary, $my-warn);

@@ -30,17 +30,18 @@
       </div>
 
       <div class="icons">
-        <button mat-button>
-          <mat-icon *ngIf="!userAuthenticate" (click)="openDialog()"
-            >person
+        <button mat-button *ngIf="!userAuthenticate" (click)="openDialog()">
+          <mat-icon>
+            person
           </mat-icon>
-          <mat-icon *ngIf="userAuthenticate" (click)="openProfile()"
-            >kitchen
+        </button>
+        <button mat-button *ngIf="userAuthenticate" (click)="openProfile()">
+          <mat-icon>
+            kitchen
           </mat-icon>
         </button>
         <button mat-button *ngIf="userAuthenticate">
-          <mat-icon  (click)="logout()"
-          >exit_to_app
+          <mat-icon (click)="logout()">exit_to_app
           </mat-icon>
         </button>
         <button mat-button [matMenuTriggerFor]="lang">
