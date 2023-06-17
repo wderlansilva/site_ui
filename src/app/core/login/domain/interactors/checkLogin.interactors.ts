@@ -7,12 +7,12 @@ import {Injectable} from "@angular/core";
 @Injectable()
 export class CheckLoginInteractors implements Interactor<Observable<User>> {
 
-  constructor(
-    private gateway: LoginGateway
-  ) {
-  }
+    constructor(
+        private gateway: LoginGateway
+    ) {
+    }
 
-  execute(user: User): Observable<User> {
-    return this.gateway.checkLogin(user);
-  }
+    execute(user: User): Observable<User> {
+        return this.gateway.checkLogin(user);
+    }
 }

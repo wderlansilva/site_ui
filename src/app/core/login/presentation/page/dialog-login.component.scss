@@ -1,24 +1,27 @@
-h1 {
-  width: 100%;
-  text-align: center;
-}
+@import "src/app/shared/scss/variables";
 
-form {
-  mat-form-field:first-child {
-      margin: 1rem 0;
-  }
-}
 
-.mat-dialog-content {
-  margin-top: 1rem;
-}
+    h1 {
+        width: 100%;
+        text-align: center;
+    }
 
-.mat-dialog-actions {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    form {
+        mat-form-field:first-child {
+            margin: 1rem 0;
+        }
+    }
 
-  button {
-    width: 40%;
-  }
-}
+    .mat-dialog-content {
+        margin-top: 1rem;
+    }
+
+    .mat-dialog-actions {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        button {
+            width: 40%;
+        }
+    }

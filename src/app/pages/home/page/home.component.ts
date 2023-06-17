@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   }
 
   auth() {
-    return this.authService.teste();
+    // return this.authService.teste();
   }
 
 }

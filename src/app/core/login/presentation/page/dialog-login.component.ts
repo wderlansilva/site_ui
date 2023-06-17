@@ -2,74 +2,46 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from "@angular/material/snack-bar";
 import {CheckLoginPresenter} from "../presenter/checkLoginPresenter";
+import {AuthService} from "../../../../shared/authService/auth.service";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './dialog-login.component.html',
-  styleUrls: ['./dialog-login.component.scss']
+    selector: 'app-login',
+    templateUrl: './dialog-login.component.html',
+    styleUrls: ['./dialog-login.component.scss']
 })
 export class DialogLogin implements OnInit {
 
-  hide = true;
-  form: FormGroup;
-  horizontalPosition: MatSnackBarHorizontalPosition = 'right';
-  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+    hide = true;
+    form: FormGroup;
+    horizontalPosition: MatSnackBarHorizontalPosition = 'right';
+    verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private snackBar: MatSnackBar,
-    private checkLoginPresenter: CheckLoginPresenter
-  ) {
-    this.form = this.formBuilder.group({
-      email: ['', [
-        Validators.required, Validators.email]],
-      password: [null]
-    })
-  }
-
-
-  ngOnInit(): void {
-  }
-
-  getErrorMessage() {
-    if (this.form.get('email')?.hasError('required')) {
-      return 'You must enter a value';
+    constructor(
+        private _authService: AuthService,
+        private formBuilder: FormBuilder,
+        private snackBar: MatSnackBar,
+        private checkLoginPresenter: CheckLoginPresenter
+    ) {
+        this.form = this.formBuilder.group({
+            email: ['', [
+                Validators.required, Validators.email]],
+            password: [null]
+        });
     }
 
-    return this.form.get('email')?.hasError('email') ? 'Not a valid email' : '';
-  }
+    ngOnInit(): void {
+    }
 
+    getErrorMessage() {
+        if (this.form.get('email')?.hasError('required')) {
+            return 'Você precisa informar um valor!';
+        }
 
-  onSubmit() {
-    this.checkLoginPresenter.checkLogin(this.form.value).subscribe({
-      next: (user) => {
-        console.log(user)
-        this.onSucess();
-      },
-      error: () => {
-        this.onError();
-      }
-    });
-  }
+        return this.form.get('email')?.hasError('email') ? 'Não é um email valido!' : '';
+    }
 
-  //Todo: Abstrair esse funcionamento.
-  onSucess() {
-    this.snackBar.open('Usuario autenticado com sucesso!', '', {
-      horizontalPosition: this.horizontalPosition,
-      verticalPosition: this.verticalPosition,
-      duration: 5000
-    });
-  }
-
-  onError() {
-    this.snackBar.open('Ocorreu um erro, verifique suas credenciais.', '', {
-      horizontalPosition: this.horizontalPosition,
-      verticalPosition: this.verticalPosition,
-      duration: 5000
-    });
-  }
-
-  onCancel() {
-  }
+    public onSubmit(): void {
+       this._authService.login(this.form.getRawValue());
+    }
 
 }

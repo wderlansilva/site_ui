@@ -30,10 +30,13 @@ export class HeaderComponent implements OnInit {
       .subscribe((value) => (this.userAuthenticate = value));
 
     this.route.events.subscribe({
-      next: (event) => {
+      next: (event): void => {
         if (event instanceof NavigationStart) {
-          console.log(event);
-          this.visible = !event.url.includes('/account-panel');
+           console.log(event);
+           this.visible = !event.url.includes('/account-panel');
+           if (event.url.includes('/account-panel')) {
+              this.dialog.closeAll();
+           }
         }
       },
     });

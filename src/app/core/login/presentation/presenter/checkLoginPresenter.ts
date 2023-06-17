@@ -7,7 +7,6 @@ import * as moment from "moment/moment";
 @Injectable()
 export class CheckLoginPresenter {
 
-  static userAuthenticte = new EventEmitter<boolean>;
   constructor(
     private checkLoginInteractor: CheckLoginInteractors
   ) {}

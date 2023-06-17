@@ -7,5 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'site_ui';
-  teste = 'site_ui';
 }

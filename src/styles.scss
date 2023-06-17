@@ -1,4 +1,4 @@
-@import "/src/app/shared/scss/_variables.scss";
+@import "src/app/shared/scss/variables";
 
 html, body { height: 100%; }
 body {
@@ -12,8 +12,8 @@ body {
 
 @include mat-core();
 
-$my-primary: mat-palette($mat-gray, 900);
-$my-secondary: mat-palette($mat-gray, 800);
+$my-primary: mat-palette($mat-gray, 700);
+$my-secondary: mat-palette($mat-gray, 500);
 $my-warn: mat-palette($mat-red);
 
 $my-theme: mat-dark-theme($my-primary, $my-secondary, $my-warn);

@@ -10,7 +10,6 @@ export class LoginAdapter implements LoginGateway {
   constructor(
     private repository: LoginRepository
   ) {
-
   }
   checkLogin(user: User): Observable<User> {
     return this.repository.checkLogin(user);
